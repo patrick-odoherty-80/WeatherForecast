@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+<p>Enter a city to find the weather</p>
+<br><br>
+
+<form th:action="@{/weather}" method="get">
+
+    Enter a city: <input type="text" name="city"/>
+    <button type="submit">Search</button>
+
+</form>
+
+</body>
+</html>

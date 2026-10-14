@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+    <h3>Weather Search History</h3>
+    <hr>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>City</th>
+                <th>Date</th>
+                <th>Weather Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="tempWeather : ${generalWeatherList}">
+                <td th:text="${tempWeather.getCity()}"></td>
+                <td th:text="${tempWeather.getDate()}"></td>
+                <td th:text="${tempWeather.getDescription()}"></td>
+                <td>
+                    <a th:href="@{/delete(weatherId=${tempWeather.id})}"
+                       class="btn btn-info btn-sm"
+                        onclick="if(!(confirm('Are you sure you want to remove this search result?'))) return false">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr>
+
+<button>
+    <a href="/city">Go Back</a>
+</button>
+
+</body>
+</html>

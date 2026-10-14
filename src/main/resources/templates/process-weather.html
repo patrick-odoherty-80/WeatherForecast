@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<br>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Weather Dashboard</h1>
+    </div>
+    <table class="table table-striped" border="1" width="300" align="center">
+        <tr>
+            <th colspan="60" class="text-center">Weather</th>
+        </tr>
+        <tr class="text-center">
+            <th colspan="20" class="text-center">City : <span th:text="${weather.getName()}" /></th>
+            <th colspan="20" class="text-center">Date : <span th:text="${currentDate}"/></th>
+            <th colspan="20" class="text-center">Temperature : <span th:text="${weather.getMain().getTemp()}"/> F</th>
+        </tr>
+        <tr class="text-center">
+            <th colspan="15" class="text-center">It feels like <span th:text="${weather.getMain().getFeels_like()}"/> F</th>
+            <th colspan="15" class="text-center">Weather description: <span th:text="${weather.getWeather()[0].getDescription()}" /></th>
+            <th colspan="15" class="text-center">The temperature minimum for the day <span th:text="${weather.getMain().getTemp_min()}" /> F</th>
+            <th colspan="15" class="text-center">The temperature maximum for the day <span th:text="${weather.getMain().getTemp_max()}"  /> F</th>
+        </tr>
+        <tr>
+            <th colspan="60" class="text-center">Five Day Forecast</th>
+        </tr>
+        <tr class="text-center">
+            <th colspan="12" class="text-center">
+                Date : <span th:text="${currentDate.plusDays(1)}"/>
+                <br>
+                Weather : <span th:text="${fiveDayForecast.getList()[0].getMain().getTemp()}"/>
+                <br>
+                Description : <span th:text="${fiveDayForecast.getList()[0].getWeather()[0].getDescription()}"/>
+            </th>
+            <th colspan="12" class="text-center">
+                Date : <span th:text="${currentDate.plusDays(2)}"/>
+                <br>
+                Weather : <span th:text="${fiveDayForecast.getList()[1].getMain().getTemp()}"/>
+                <br>
+                Description : <span th:text="${fiveDayForecast.getList()[1].getWeather()[0].getDescription()}"/>
+            </th>
+            <th colspan="12" class="text-center">
+                Date : <span th:text="${currentDate.plusDays(3)}"/>
+                <br>
+                Weather : <span th:text="${fiveDayForecast.getList()[2].getMain().getTemp()}"/>
+                <br>
+                Description : <span th:text="${fiveDayForecast.getList()[2].getWeather()[0].getDescription()}"/>
+            </th>
+            <th colspan="12" class="text-center">
+                Date : <span th:text="${currentDate.plusDays(4)}"/>
+                <br>
+                Weather : <span th:text="${fiveDayForecast.getList()[3].getMain().getTemp()}"/>
+                <br>
+                Description : <span th:text="${fiveDayForecast.getList()[3].getWeather()[0].getDescription()}"/>
+            </th>
+            <th colspan="12" class="text-center">
+                Date : <span th:text="${currentDate.plusDays(5)}"/>
+                <br>
+                Weather : <span th:text="${fiveDayForecast.getList()[4].getMain().getTemp()}"/>
+                <br>
+                Description : <span th:text="${fiveDayForecast.getList()[4].getWeather()[0].getDescription()}"/>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="60" class="text-center">Pollution Levels</th>
+        </tr>
+        <tr class="text-center">
+            <th colspan="10" class="text-center">Sulfur Dioxide : <span th:text="${pollutionRating.getSulfurDioxide()}" /></th>
+            <th colspan="10" class="text-center">Nitrogen Dioxide : <span th:text="${pollutionRating.getNitrogenDioxide()}"/></th>
+            <th colspan="10" class="text-center">Particulates 10 : <span th:text="${pollutionRating.getParticulatesTen()}"/></th>
+            <th colspan="10" class="text-center">Particulates 2.5 : <span th:text="${pollutionRating.getParticulatesTwoFive()}" /></th>
+            <th colspan="10" class="text-center">Ozone : <span th:text="${pollutionRating.getOzone()}"/></th>
+            <th colspan="10" class="text-center">Carbon Monoxide : <span th:text="${pollutionRating.getCarbonMonoxide()}"/></th>
+        </tr>
+    </table>
+</div>
+
+
+<br><br>
+
+<button>
+<a href="/city">Go Back</a>
+</button>
+
+</body>
+</html>
